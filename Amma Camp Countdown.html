@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AMMA · Countdown</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .cd-wrap {
+      padding: 2rem 1.5rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .cd-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      font-style: italic;
+      color: #888;
+      letter-spacing: 0.12em;
+    }
+
+    .cd-grid {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .cd-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cd-box {
+      width: 64px;
+      height: 64px;
+      background: #8B4513;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cd-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 400;
+      color: #f5d28a;
+      line-height: 1;
+    }
+
+    .cd-unit-label {
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #999;
+      font-weight: 400;
+    }
+
+    .cd-sep {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      color: #8B4513;
+      opacity: 0.5;
+      margin-top: 14px;
+      line-height: 1;
+    }
+
+    .cd-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 12px;
+      color: #aaa;
+      letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+<body>
+  <div class="cd-wrap">
+    <p class="cd-label">AMMA · Black Rock City 2026</p>
+
+    <div class="cd-grid">
+      <div class="cd-unit">
+        <div class="cd-box"><span class="cd-num" id="d">--</span></div>
+        <span class="cd-unit-label">Days</span>
+      </div>
+      <div class="cd-sep">·</div>
+      <div class="cd-unit">
+        <div class="cd-box"><span class="cd-num" id="h">--</span></div>
+        <span class="cd-unit-label">Hours</span>
+      </div>
+      <div class="cd-sep">·</div>
+      <div class="cd-unit">
+        <div class="cd-box"><span class="cd-num" id="m">--</span></div>
+        <span class="cd-unit-label">Minutes</span>
+      </div>
+      <div class="cd-sep">·</div>
+      <div class="cd-unit">
+        <div class="cd-box"><span class="cd-num" id="s">--</span></div>
+        <span class="cd-unit-label">Seconds</span>
+      </div>
+    </div>
+
+    <p class="cd-tagline">until we find each other in the dust ✦</p>
+  </div>
+
+  <script>
+    const target = new Date('2026-08-30T00:00:00');
+    function tick() {
+      const diff = target - new Date();
+      if (diff <= 0) return;
+      document.getElementById('d').textContent = String(Math.floor(diff / 86400000)).padStart(2, '0');
+      document.getElementById('h').textContent = String(Math.floor(diff % 86400000 / 3600000)).padStart(2, '0');
+      document.getElementById('m').textContent = String(Math.floor(diff % 3600000 / 60000)).padStart(2, '0');
+      document.getElementById('s').textContent = String(Math.floor(diff % 60000 / 1000)).padStart(2, '0');
+    }
+    tick();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>
